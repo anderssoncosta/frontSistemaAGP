@@ -6,6 +6,8 @@ import Financial from "./pages/Financial";
 import Options from "./pages/Options";
 import Layout from "./components/Layout";
 import PatientsInfo from "./pages/Patients/PatientsInfo";
+import Register from "./pages/register";
+import Login from "./pages/login";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
         element: <Options />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 
