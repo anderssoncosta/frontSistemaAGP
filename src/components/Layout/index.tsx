@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import SideBar from "../Sidebar";
-import Container from "../Container";
+import SideBar from "../sidebar";
 
-export default function Layout() {
+const Layout = () => {
   return (
-    <Container>
+    <div className="w-full flex max-h-screen">
       <SideBar />
       <Outlet />
-    </Container>
+    </div>
   );
-}
+};
+export default Layout;

@@ -6,11 +6,7 @@ interface ModalProps {
   children: ReactNode;
 }
 
-export default function ModalContents({
-  isOpen,
-  onClose,
-  children,
-}: ModalProps) {
+const ModalContents = ({ isOpen, onClose, children }: ModalProps) => {
   const modalClasses = isOpen
     ? "fixed inset-0 flex items-center justify-center"
     : "hidden";
@@ -44,8 +40,10 @@ export default function ModalContents({
               placeholder="Data de Nascimento"
             />
           </div>
+          {children}
         </div>
       </div>
     </div>
   );
-}
+};
+export default ModalContents;

@@ -1,30 +1,17 @@
-import Header from "../../components/Header";
-import UserProfile from "../../components/UserProfile";
+import Header from "../../components/header";
+import UserProfile from "../../components/userProfile";
 import { FaUserPlus } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 import { FaUserClock } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
-import Contents from "../../components/Contents";
-import ModalContents from "../../components/Modal";
-import { useState } from "react";
+import Contents from "../../components/contents";
 
-export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [input, setInput] = useState("");
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+const Home = () => {
   return (
     <Contents>
-      <main className="w-full h-[calc(100vh-350px)]">
-        <div>
+      <main className="w-full">
+        <div className="w-full">
           <UserProfile />
           <Header />
         </div>
@@ -66,13 +53,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <button onClick={openModal}>Abre modal</button>
-      <ModalContents isOpen={isModalOpen} onClose={closeModal}>
-        
-
-        {/* <p className="text-lg font-bold mb-4">This is a Modal</p> */}
-        {/* <p>This is the modal content. You can add any content here.</p> */}
-      </ModalContents>
     </Contents>
   );
-}
+};
+export default Home;

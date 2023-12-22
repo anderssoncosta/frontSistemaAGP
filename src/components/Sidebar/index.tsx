@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { FaUser, FaCalendarAlt, FaRegCreditCard } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
@@ -8,6 +8,7 @@ import { PiSignOutBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/LOGO.png";
+import { AuthContext } from "../../context/auth";
 
 interface navProps {
   name: string;
@@ -22,11 +23,6 @@ interface SubNavProps {
 }
 
 const nav: navProps[] = [
-  // {
-  //   name: "Início",
-  //   href: "/",
-  //   icon: <AiFillHome size={22} />,
-  // },
   {
     name: "Pacientes",
     href: "/pacientes",
@@ -97,18 +93,43 @@ const nav: navProps[] = [
   },
 ];
 
-export default function SideBar() {
+const SideBar = () => {
   const [isSubMenuOpen, setSubMenuOpen] = useState<number | null>(null);
+  const sideBarRef = useRef<HTMLDivElement>(null);
+
+  const { logout } = useContext(AuthContext);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sideBarRef.current &&
+        !sideBarRef.current.contains(event.target as Node)
+      ) {
+        setSubMenuOpen(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleSubMenu = (index: number) => {
     setSubMenuOpen(isSubMenuOpen === index ? null : index);
   };
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
-    <aside className="flex w-64 h-[95%] py-2 px-2 rounded-xl bg-gradient-to-t from-violet-700 to-violet-400">
+    <aside
+      ref={sideBarRef}
+      className="flex h-screen px-6 py-5 rounded-e-xl bg-gradient-to-t from-violet-700 to-violet-400"
+    >
       <div className="flex justify-between flex-col w-full items-center h-full">
-        <div className="flex justify-center">
+        <div className="flex justify-center w-full">
           <img
-            className="w-fit h-40 rounded-lg"
+            className="w-60 h-auto rounded-lg"
             src={logo}
             alt="Logo do sistema"
           />
@@ -151,12 +172,13 @@ export default function SideBar() {
           ))}
         </nav>
         <div className="flex items-center mb-3 text-white hover:text-gray-300 cursor-pointer">
-          <Link to="/" className="flex items-center gap-3  ">
+          <button onClick={handleLogout} className="flex items-center gap-3">
             <PiSignOutBold />
             <span>Sair</span>
-          </Link>
+          </button>
         </div>
       </div>
     </aside>
   );
-}
+};
+export default SideBar;

@@ -1,15 +1,19 @@
+import "react-toastify/dist/ReactToastify.min.css";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import ReactDOM from "react-dom/client";
-import { ChakraProvider } from "@chakra-ui/react";
-
-import { RouterProvider } from "react-router-dom";
+import AuthProvider from "./context/auth.tsx";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import { router } from "../src/App.tsx";
+import RoutesApp from "./routes.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/* <ChakraProvider> */}
-      <RouterProvider router={router} />
-    {/* </ChakraProvider> */}
+    <BrowserRouter>
+      <ToastContainer autoClose={3000} />
+      <AuthProvider>
+        <RoutesApp />
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
