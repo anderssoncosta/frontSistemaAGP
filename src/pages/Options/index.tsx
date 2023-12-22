@@ -1,17 +1,16 @@
-import Contents from "../../components/Contents";
-import HeaderTitle from "../../components/HeaderTitle";
-import UserProfile from "../../components/UserProfile";
+import Contents from "../../components/contents";
+import HeaderTitle from "../../components/headerTitle";
+import UserProfile from "../../components/userProfile";
 
-export default function Options() {
+const Options = () => {
   return (
     <Contents>
       <div className="w-full">
         <UserProfile />
         <HeaderTitle title="Opções" />
       </div>
-      <div>
-        <NavMenu/>
-      </div>
+      <div></div>
     </Contents>
   );
-}
+};
+export default Options;

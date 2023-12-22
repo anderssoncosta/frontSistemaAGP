@@ -1,8 +1,8 @@
-import Contents from "../../components/Contents";
-import HeaderTitle from "../../components/HeaderTitle";
-import UserProfile from "../../components/UserProfile";
+import Contents from "../../components/contents";
+import HeaderTitle from "../../components/headerTitle";
+import UserProfile from "../../components/userProfile";
 
-export default function Financial() {
+const Financial = () => {
   return (
     <Contents>
       <div className="w-full">
@@ -14,4 +14,5 @@ export default function Financial() {
       </div>
     </Contents>
   );
-}
+};
+export default Financial;

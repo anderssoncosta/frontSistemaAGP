@@ -4,6 +4,7 @@ interface ContainerProps {
   children: ReactNode;
 }
 
-export default function Container({ children }: ContainerProps) {
+const Container = ({ children }: ContainerProps) => {
   return <div className="flex w-full h-screen p-5">{children}</div>;
-}
+};
+export default Container;

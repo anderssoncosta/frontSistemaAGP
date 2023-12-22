@@ -1,6 +1,6 @@
 import imgUser from "../../assets/LOGO.png";
 
-export default function UserProfile() {
+const UserProfile = () => {
   return (
     <div className="flex justify-end w-full mb-3">
       <div className="flex items-center gap-2 w-48">
@@ -16,4 +16,5 @@ export default function UserProfile() {
       </div>
     </div>
   );
-}
+};
+export default UserProfile;

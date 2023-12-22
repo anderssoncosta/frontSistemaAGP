@@ -1,8 +1,8 @@
-import Contents from "../../components/Contents";
-import HeaderTitle from "../../components/HeaderTitle";
-import UserProfile from "../../components/UserProfile";
+import Contents from "../../components/contents";
+import HeaderTitle from "../../components/headerTitle";
+import UserProfile from "../../components/userProfile";
 
-export default function Shedule() {
+const Shedule = () => {
   return (
     <Contents>
       <div className="w-full">
@@ -11,4 +11,5 @@ export default function Shedule() {
       </div>
     </Contents>
   );
-}
+};
+export default Shedule;

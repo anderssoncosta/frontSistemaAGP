@@ -1,6 +1,6 @@
 import imgHeader from "../../assets/img_main.png";
 
-export default function Header() {
+const Header = () => {
   const date = new Date().toLocaleDateString();
   return (
     <header className="flex items-end justify-between rounded-lg max-w-full  h-52 bg-gradient-to-t from-violet-700 to-violet-400">
@@ -19,4 +19,5 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};
+export default Header;
