@@ -1,6 +1,35 @@
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Input from "../../components/input";
+import { AuthContext } from "../../context/auth";
+import { useContext } from "react";
 
-export default function Register() {
+const schema = z.object({
+  username: z.string().nonempty("O campo nome é obrigatório"),
+  email: z.string().nonempty("O campo e-mail é obrigatório"),
+  password: z.string().nonempty("O campo senha é obrigatório"),
+});
+
+type FormData = z.infer<typeof schema>;
+
+const Register = () => {
+  const { signUp } = useContext(AuthContext);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+  });
+
+  const handleRegister = (data: FormData) => {
+    signUp(data);
+    console.log(data);
+  };
+
   return (
     <div className="bg-[url('./assets/background-login.png')] bg-cover h-screen w-full flex justify-center">
       <div className=" w-full flex flex-col justify-center sm:flex sm:flex-row ">
@@ -12,7 +41,6 @@ export default function Register() {
             </h1>
           </div>
         </div>
-
         <div className="w-10/12 mx-auto my-5 bg-violet-100 rounded-lg flex flex-col items-center justify-center md:w-full md:mt-0">
           <div className="w-8/12 mx-auto py-5">
             <div>
@@ -21,29 +49,44 @@ export default function Register() {
               </h1>
               <p className="text-violet-500">Entre com seu usuário e senha.</p>
             </div>
-            <form className="flex flex-col gap-1 mt-5">
+            <form
+              onSubmit={handleSubmit(handleRegister)}
+              className="flex flex-col gap-2 mt-5"
+            >
               <div>
-                <span className="text-violet-500">Nome</span>
-                <input
+                <span className="text-violet-500">Nome Completo</span>
+                <Input
+                  name="username"
                   type="text"
-                  className=" w-full border-b border-violet-700 bg-transparent text-lg p-2 focus:border-violet-700 focus:outline-none"
+                  placeholder="Digite seu nome completo"
+                  register={register}
+                  error={errors.username?.message}
                 />
               </div>
               <div>
                 <span className="text-violet-500">E-mail</span>
-                <input
+                <Input
+                  name="email"
                   type="email"
-                  className=" w-full border-b border-violet-700 bg-transparent text-lg p-2 focus:border-violet-700 focus:outline-none"
+                  placeholder="Digite seu e-mail"
+                  register={register}
+                  error={errors.email?.message}
                 />
               </div>
               <div>
                 <span className="text-violet-500">Senha</span>
-                <input
+                <Input
+                  name="password"
                   type="password"
-                  className=" w-full border-b border-violet-700 bg-transparent text-lg p-2 focus:border-violet-700 focus:outline-none"
+                  placeholder="Digite sua senha"
+                  register={register}
+                  error={errors.password?.message}
                 />
               </div>
-              <button className="bg-violet-700 rounded-lg h-10 text-white mt-3">
+              <button
+                type="submit"
+                className="bg-violet-700 rounded-lg h-10 text-white mt-3"
+              >
                 Registrar
               </button>
               <div className="w-full text-center text-violet-700 mt-5">
@@ -55,4 +98,5 @@ export default function Register() {
       </div>
     </div>
   );
-}
+};
+export default Register;
