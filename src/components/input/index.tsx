@@ -21,13 +21,13 @@ const Input = ({
   return (
     <div>
       <input
-        className="w-full border-b border-violet-700 bg-transparent text-lg p-2 focus:border-violet-700 focus:outline-none"
+        className="w-full border rounded-lg border-blue-500 bg-transparent p-2 focus:border-blue-500 focus:outline-none"
         placeholder={placeholder}
         type={type}
         {...register(name, rules)}
         id={name}
       />
-      {error && <p className="my-1 text-red-500">{error}</p>}
+      {error && <p className="text-red-500 text-xs">{error}</p>}
     </div>
   );
 };

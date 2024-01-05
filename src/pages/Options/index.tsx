@@ -5,11 +5,13 @@ import UserProfile from "../../components/userProfile";
 const Options = () => {
   return (
     <Contents>
-      <div className="w-full">
-        <UserProfile />
-        <HeaderTitle title="Opções" />
+      <div className="w-[95%]">
+        <div className="w-full">
+          <UserProfile />
+          <HeaderTitle title="Opções" />
+        </div>
+        <div></div>
       </div>
-      <div></div>
     </Contents>
   );
 };

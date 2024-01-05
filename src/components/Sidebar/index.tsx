@@ -7,7 +7,7 @@ import { PiSignOutBold } from "react-icons/pi";
 
 import { Link } from "react-router-dom";
 
-import logo from "../../assets/LOGO.png";
+// import logo from "../../assets/LOGO.png";
 import { AuthContext } from "../../context/auth";
 
 interface navProps {
@@ -29,16 +29,20 @@ const nav: navProps[] = [
     icon: <FaUser size={22} />,
     subnav: [
       {
-        submenu: "Cadastrar Paciente",
+        submenu: "Lista dos Pacientes",
         href: "/pacientes/",
       },
       {
-        submenu: "Emitir Declaração de presença",
-        href: "/pacientes",
+        submenu: "Cadastrar Paciente",
+        href: "/pacientes/cadastrar-paciente",
       },
+      // {
+      //   submenu: "Emitir Declaração de presença",
+      //   href: "/pacientes",
+      // },
       {
-        submenu: "Cadastrar tipo de ficha",
-        href: "/pacientes",
+        submenu: "Cadastrar Ficha de Atendimento",
+        href: "/tipodeficha",
       },
     ],
   },
@@ -124,15 +128,15 @@ const SideBar = () => {
   return (
     <aside
       ref={sideBarRef}
-      className="flex h-screen px-6 py-5 rounded-e-xl bg-gradient-to-t from-violet-700 to-violet-400"
+      className="flex w-64 h-screen px-6 py-5 rounded-e-xl bg-gradient-to-t from-blue-700 to-blue-400"
     >
       <div className="flex justify-between flex-col w-full items-center h-full">
         <div className="flex justify-center w-full">
-          <img
+          {/* <img
             className="w-60 h-auto rounded-lg"
             src={logo}
             alt="Logo do sistema"
-          />
+          /> */}
         </div>
         <nav className="w-full flex flex-col gap-3">
           <Link to="/" className="flex mb-3 text-white gap-3">
@@ -140,7 +144,7 @@ const SideBar = () => {
             Início
           </Link>
           {nav.map((item, index) => (
-            <div key={index} className="flex flex-col mb-3 text-white ">
+            <div key={index} className="flex-1 flex-col mb-3 text-white ">
               <a
                 onClick={() => toggleSubMenu(index)}
                 className="flex items-center gap-3 hover:text-gray-300 cursor-pointer "
@@ -154,7 +158,7 @@ const SideBar = () => {
                 <div
                   className={`${
                     isSubMenuOpen === index ? "block" : "hidden"
-                  } flex flex-col bg-violet-400 p-2 space-y-2 rounded-lg mt-1`}
+                  } flex flex-col bg-blue-400 p-2 space-y-2 rounded-lg mt-1`}
                 >
                   {item.subnav.map((subItem, subIndex) => (
                     <div key={subIndex}>

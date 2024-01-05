@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TableColumn } from "react-data-table-component";
 import Table from "../../components/table";
-import { ApiResponse } from "../../services/patientes";
+import { ApiResponse, deletePatient } from "../../services/patientes";
 import { RiEditFill } from "react-icons/ri";
 import { BiSolidTrash, BiBookOpen } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const PatientTable = ({ data = [] }: ApiResponse) => {
+ 
+  const handleDelete = async (item: number) => {
+    await deletePatient(item);
+  };
+
   const columns: TableColumn<any>[] = [
     {
       name: "Ações",
@@ -15,24 +20,24 @@ const PatientTable = ({ data = [] }: ApiResponse) => {
           <Link
             to={`/paciente/${item.id}`}
             title="Abrir Cadastro"
-            className="bg-violet-500 text-white py-1 px-2 rounded-lg"
+            className="bg-blue-500 text-white py-1 px-2 rounded-lg"
           >
             <BiBookOpen />
           </Link>
           <Link
             to={""}
             title="Editar"
-            className="bg-violet-500 text-white py-1 px-2 rounded-lg"
+            className="bg-blue-500 text-white py-1 px-2 rounded-lg"
           >
             <RiEditFill />
           </Link>
-          <Link
-            to={""}
+          <button
+            onClick={() => handleDelete(item.id)}
             title="Excluir"
-            className="bg-violet-500 text-white py-1 px-2 rounded-lg"
+            className="bg-blue-500 text-white py-1 px-2 rounded-lg"
           >
             <BiSolidTrash />
-          </Link>
+          </button>
         </div>
       ),
     },

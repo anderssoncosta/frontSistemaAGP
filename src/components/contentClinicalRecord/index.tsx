@@ -10,7 +10,7 @@ const ContentClinicalRecord = () => {
   const fetchPatients = async () => {
     try {
       const response = await getPatients();
-      console.log(response);
+      // console.log(response);
       setRegs(response);
     } catch (error) {
       console.error(error);
@@ -22,6 +22,7 @@ const ContentClinicalRecord = () => {
   }, []);
 
   const pacienteAtual = regs.find((paciente) => paciente.id === Number(id));
+  console.log(pacienteAtual)
   return (
     <div>
       {pacienteAtual && (

@@ -46,64 +46,74 @@ const PatientsInfo = () => {
 
   return (
     <Contents>
-      <div className="w-full">
-        <UserProfile />
-        <HeaderTitle
-          iconTitle={<FaArrowLeft size={20} color="#FFF" />}
-          title={`Paciente: ${currentPatient?.nome_paciente}`}
-        />
-      </div>
-      {currentPatient && (
-        <div className="h-36 flex justify-between items-center bg-white p-4 mt-4 gap-2 rounded-lg">
-          <div>
-            <h1 className="font-bold">{currentPatient.nome_paciente}</h1>
-          </div>
-          <div className="flex flex-col justify-between h-full">
-            <h1>
-              Idade:{" "}
-              <span className="font-bold">{currentPatient.idade_paciente}</span>
-            </h1>
-            <h1>
-              Paciente:{" "}
-              <span className="font-bold">
-                {new Date(currentPatient.updatedAt).toLocaleDateString("pt-BR")}
-              </span>
-            </h1>
-            <h1>
-              Responsável:{" "}
-              <span className="font-bold">{currentPatient.resp_paciente}</span>
-            </h1>
-          </div>
-          <div className="flex flex-col justify-evenly h-full">
-            <h1>
-              Telefone:{" "}
-              <span className="font-bold">{currentPatient.tel_paciente}</span>
-            </h1>
-            <h1>
-              E-mail:{" "}
-              <span className="font-bold">{currentPatient.email_paciente}</span>
-            </h1>
-          </div>
-          <div className="flex flex-col gap-2">
-            <button
-              onClick={handlePresencaClick}
-              className="bg-green-500 text-white px-3 rounded-lg"
-            >
-              Presente
-            </button>
-            <button className="bg-red-500 text-white px-3 rounded-lg">
-              Falta
-            </button>
-          </div>
+      <div className="w-[95%]">
+        <div className="w-full">
+          <UserProfile />
+          <HeaderTitle
+            iconTitle={<FaArrowLeft size={20} color="#FFF" />}
+            title={`Paciente: ${currentPatient?.nome_paciente}`}
+          />
         </div>
-      )}
-      <div className="flex flex-col gap-3 mt-10 ">
-        <Tabs
-          contentAnamnesis={<ContentAnamnesis />}
-          contentClinicalRecord={<ContentClinicalRecord />}
-          contentEvolution={<ContentEvolution />}
-          contentQuantityPhysio={<ContentQuantityPhysio time={time} />}
-        />
+        {currentPatient && (
+          <div className="h-36 flex justify-between items-center bg-white p-4 mt-4 gap-2 rounded-lg">
+            <div>
+              <h1 className="font-bold">{currentPatient.nome_paciente}</h1>
+            </div>
+            <div className="flex flex-col justify-between h-full">
+              <h1>
+                Idade:{" "}
+                <span className="font-bold">
+                  {currentPatient.idade_paciente}
+                </span>
+              </h1>
+              <h1>
+                Paciente:{" "}
+                <span className="font-bold">
+                  {new Date(currentPatient.updatedAt).toLocaleDateString(
+                    "pt-BR"
+                  )}
+                </span>
+              </h1>
+              <h1>
+                Responsável:{" "}
+                <span className="font-bold">
+                  {currentPatient.resp_paciente}
+                </span>
+              </h1>
+            </div>
+            <div className="flex flex-col justify-evenly h-full">
+              <h1>
+                Telefone:{" "}
+                <span className="font-bold">{currentPatient.tel_paciente}</span>
+              </h1>
+              <h1>
+                E-mail:{" "}
+                <span className="font-bold">
+                  {currentPatient.email_paciente}
+                </span>
+              </h1>
+            </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={handlePresencaClick}
+                className="bg-green-500 text-white px-3 rounded-lg"
+              >
+                Presente
+              </button>
+              <button className="bg-red-500 text-white px-3 rounded-lg">
+                Falta
+              </button>
+            </div>
+          </div>
+        )}
+        <div className="flex flex-col gap-3 mt-10 ">
+          <Tabs
+            contentClinicalRecord={<ContentClinicalRecord />}
+            contentAnamnesis={<ContentAnamnesis />}
+            contentQuantityPhysio={<ContentQuantityPhysio time={time} />}
+            contentEvolution={<ContentEvolution />}
+          />
+        </div>
       </div>
     </Contents>
   );

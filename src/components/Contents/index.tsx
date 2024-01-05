@@ -5,6 +5,6 @@ interface ContentsProps {
 }
 
 const Contents = ({ children }: ContentsProps) => {
-  return <div className="w-full p-2">{children}</div>;
+  return <div className=" flex flex-col items-center w-full h-screen p-2 relative">{children}</div>;
 };
 export default Contents;

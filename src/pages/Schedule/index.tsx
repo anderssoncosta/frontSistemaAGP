@@ -5,9 +5,11 @@ import UserProfile from "../../components/userProfile";
 const Shedule = () => {
   return (
     <Contents>
-      <div className="w-full">
-        <UserProfile />
-        <HeaderTitle title="Agenda" />
+      <div className="w-[95%]">
+        <div className="w-full">
+          <UserProfile />
+          <HeaderTitle title="Agenda" />
+        </div>
       </div>
     </Contents>
   );

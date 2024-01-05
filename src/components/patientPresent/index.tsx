@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { BiTrash } from "react-icons/bi";
-import { toast } from "react-toastify";
 
 interface TimeEntry {
   data: string;
@@ -10,23 +9,12 @@ interface TimeEntry {
 const PatientPresent = () => {
   const [time, setTime] = useState<TimeEntry[]>([]);
 
-  const handlePresencaClick = () => {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString();
-    const formattedTime = currentDate.toLocaleTimeString();
-
-    const updatedTime = [...time, { data: formattedDate, hora: formattedTime }];
-
-    setTime(updatedTime);
-    toast.success("Paciente Atendido");
-  };
-
   return (
     <>
       {time.map((entry, index) => (
         <div
           key={index}
-          className="bg-violet-300 flex justify-between h-10 p-1 rounded-lg px-2 py-5"
+          className="bg-blue-300 flex justify-between h-10 p-1 rounded-lg px-2 py-5"
         >
           <div className="flex items-center gap-1">
             <h1 className="text-white">Data:</h1>

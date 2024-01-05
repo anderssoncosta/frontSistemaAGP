@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PatientApi, getPatients } from "../../services/patientes";
 import { QuestionApi, getQuestions } from "../../services/question";
 
-const ContentAnamnesis = () => {
+const RegisterAnamnesis = () => {
   const [patients, setPatients] = useState<PatientApi[]>([]);
   const [questions, setQuestions] = useState<QuestionApi[]>([]);
   const [regs, setRegs] = useState<number | null>(null);
@@ -35,4 +35,4 @@ const ContentAnamnesis = () => {
   );
 };
 
-export default ContentAnamnesis;
+export default RegisterAnamnesis;

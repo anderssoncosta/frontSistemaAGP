@@ -14,46 +14,46 @@ const Tab = ({ content }: Tab) => {
 };
 
 interface TabsProps {
-  contentClinicalRecord: ReactNode;
-  contentAnamnesis: ReactNode;
-  contentQuantityPhysio: ReactNode;
-  contentEvolution: ReactNode;
+  registerClinicalRecord: ReactNode;
+  registerAnamnesis: ReactNode;
+  registerQuantityPhysio?: ReactNode;
+  registerEvolution?: ReactNode;
 }
 
-const Tabs = ({
-  contentClinicalRecord,
-  contentAnamnesis,
-  contentQuantityPhysio,
-  contentEvolution,
-}: TabsProps) => {
+const TabsRegister = ({
+  registerClinicalRecord,
+  registerAnamnesis,
+}: // registerQuantityPhysio,
+// registerEvolution,
+TabsProps) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const tabs: Tab[] = [
     {
-      label: "Ficha Clinica",
+      label: "Cadastro - Ficha Clinica",
       icon: <HiUserCircle size={22} />,
-      content: <div>{contentClinicalRecord}</div>,
+      content: <div>{registerClinicalRecord}</div>,
     },
     {
-      label: "Anamnese",
+      label: "Ficha Anamnese",
       icon: <MdDashboard size={22} />,
-      content: <div>{contentAnamnesis}</div>,
+      content: <div>{registerAnamnesis}</div>,
     },
-    {
-      label: "Quantidade Fisio",
-      icon: <HiAdjustments size={22} />,
-      content: <div>{contentQuantityPhysio}</div>,
-    },
-    {
-      label: "Evolucao",
-      icon: <HiClipboardList size={22} />,
-      content: <div>{contentEvolution}</div>,
-    },
+    // {
+    //   label: "Quantidade Fisio",
+    //   icon: <HiAdjustments size={22} />,
+    //   content: <div>{registerQuantityPhysio}</div>,
+    // },
+    // {
+    //   label: "Evolucao",
+    //   icon: <HiClipboardList size={22} />,
+    //   content: <div>{registerEvolution}</div>,
+    // },
   ];
 
   return (
-    <div className="bg-white rounded-lg">
-      <div className="flex  mb-4 justify-between ">
+    <div className="bg-white rounded-lg h-full">
+      <div className="flex mb-4 justify-between">
         {tabs.map((tab, index) => (
           <button
             key={index}
@@ -62,7 +62,7 @@ const Tabs = ({
               activeTab === index
                 ? "bg-blue-500 text-white"
                 : "text-blue-500 hover:text-blue-700"
-            } w-1/4 py-2 border-b-2 border-transparent focus:outline-none rounded-lg`}
+            } w-1/2 py-2 border-b-2 border-transparent focus:outline-none rounded-lg`}
           >
             <div className="flex justify-center items-center gap-2">
               <>
@@ -78,4 +78,4 @@ const Tabs = ({
   );
 };
 
-export default Tabs;
+export default TabsRegister;

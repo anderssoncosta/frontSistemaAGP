@@ -7,11 +7,11 @@ export interface TimeEntry {
 
 const ContentQuantityPhysio = ({ time }: { time: TimeEntry[] }) => {
   return (
-    <div className="flex flex-col item w-full min-h-[400px] h-[400px] bg-white gap-2 p-4 overflow-auto">
+    <div className="flex flex-col item w-full max-h-[400px] bg-white gap-2 p-4 overflow-auto">
       {time.map((entry, index) => (
         <div
           key={index}
-          className="bg-violet-300 flex justify-between h-10 p-1 rounded-lg px-2 py-5"
+          className="bg-blue-300 flex justify-between h-10 p-1 rounded-lg px-2 py-5"
         >
           <div className="flex items-center gap-1">
             <h1 className="text-white">Data:</h1>
@@ -30,7 +30,7 @@ const ContentQuantityPhysio = ({ time }: { time: TimeEntry[] }) => {
           </div>
         </div>
       ))}
-      <button className="text-white bg-violet-500 rounded-lg font-bold h-8">
+      <button className="text-white bg-blue-600 rounded-lg font-bold h-8">
         Emitir Ficha de Presença
       </button>
     </div>
