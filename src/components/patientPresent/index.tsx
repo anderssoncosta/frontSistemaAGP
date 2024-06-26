@@ -2,8 +2,8 @@ import { useState } from "react";
 import { BiTrash } from "react-icons/bi";
 
 interface TimeEntry {
-  data: string;
-  hora: string;
+  date: string;
+  time: string;
 }
 
 const PatientPresent = () => {
@@ -18,11 +18,11 @@ const PatientPresent = () => {
         >
           <div className="flex items-center gap-1">
             <h1 className="text-white">Data:</h1>
-            <span className="text-white font-bold">{entry.data}</span>
+            <span className="text-white font-bold">{entry.date}</span>
           </div>
           <div className="flex items-center gap-1">
             <h1 className="text-white">Horario:</h1>
-            <span className="text-white font-bold">{entry.hora}</span>
+            <span className="text-white font-bold">{entry.time}</span>
           </div>
           <div className="flex items-center gap-1">
             <h1 className="text-white">Assinatura:</h1>

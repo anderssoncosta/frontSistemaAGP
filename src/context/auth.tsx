@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-import { UsuarioProps } from "../services/user";
+import { UsersProps } from "../services/user";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ interface AuthProviderProps {
 }
 
 export type AuthContextData = {
-  user: UsuarioProps | null;
+  user: UsersProps | null;
   signed: boolean;
   signIn: (data: SignInData) => Promise<void | null>;
   signUp: (data?: SignUpData) => Promise<void>;
@@ -30,7 +30,7 @@ export interface SignInData {
 export const AuthContext = createContext({} as AuthContextData);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<UsuarioProps | null>(null);
+  const [user, setUser] = useState<UsersProps | null>(null);
 
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       })
       .then((response) => {
         setUser(response.data);
-        toast.success("Seja bem vindo");
+        toast.success(`${user?.username}, seja bem vindo !`);
         console.log(response.data);
         navigate("/");
       })

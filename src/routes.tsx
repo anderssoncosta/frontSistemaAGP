@@ -10,6 +10,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import RegisterPatient from "./pages/Patients/registerPatient";
 import SheetType from "./pages/Patients/SheetType";
+import ScheduleList from "./pages/schedule/scheduleList";
 
 export default function RoutesApp() {
   return (
@@ -22,8 +23,9 @@ export default function RoutesApp() {
           element={<RegisterPatient />}
         />
         <Route path="/paciente/:id" element={<PatientsInfo />} />
-        <Route path="/tipodeficha" element={<SheetType />} />
-        <Route path="/agenda" element={<Schedule />} />
+        <Route path="/tipo-de-ficha" element={<SheetType />} />
+        <Route path="/agendar" element={<Schedule />} />
+        <Route path="/lista-de-agendamentos" element={<ScheduleList />} />
         <Route path="/financeiro" element={<Financial />} />
         <Route path="/opcoes" element={<Options />} />
       </Route>

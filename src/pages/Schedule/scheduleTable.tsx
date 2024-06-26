@@ -6,7 +6,7 @@ import { RiEditFill } from "react-icons/ri";
 import { BiSolidTrash, BiBookOpen } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const PatientTable = ({ data = [] }: ApiResponse) => {
+const ScheduleTable = ({ data = [] }: ApiResponse) => {
   const handleDelete = async (item: number) => {
     await deletePatient(item);
   };
@@ -47,16 +47,21 @@ const PatientTable = ({ data = [] }: ApiResponse) => {
     },
     {
       name: "Nome Paciente",
-      selector: ({ name }) => `${name}`,
+      selector: ({ nome }) => `${nome}`,
       sortable: true,
     },
     {
-      name: "Data de Cadastro",
+      name: "Data",
       selector: ({ updatedAt }) =>
         `${new Date(updatedAt).toLocaleDateString("pt-BR")}`,
+      sortable: true,
+    },
+    {
+      name: "Horário",
+      selector: ({ nome }) => `${nome}`,
       sortable: true,
     },
   ];
   return <Table columns={columns} data={data} />;
 };
-export default PatientTable;
+export default ScheduleTable;

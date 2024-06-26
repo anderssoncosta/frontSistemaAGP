@@ -10,27 +10,18 @@ import { postPatient } from "../../services/patientes";
 import Input from "../input";
 
 const schema = z.object({
-  nome_paciente: z.string().min(1, { message: "O campo nome é obrigatório." }),
-  tipoFichaId: z
-    .string()
-    .min(1, { message: "O campo tipoFicha é obrigatório." }),
-  idade_paciente: z
-    .string()
-    .min(1, { message: "O campo idade é obrigatório." }),
-  dta_nasc_paciente: z
+  nome: z.string().min(1, { message: "O campo nome é obrigatório." }),
+  idade: z.string().min(1, { message: "O campo idade é obrigatório." }),
+  dta_nasc: z
     .string()
     .min(1, { message: "O campo data de nascimento é obrigatório." }),
-  resp_paciente: z
-    .string()
-    .min(1, { message: "O campo responsável é obrigatório." }),
-  email_paciente: z
-    .string()
-    .min(1, { message: "O campo e-mail é obrigatório." }),
-  sexo_paciente: z
+  resp: z.string().min(1, { message: "O campo responsável é obrigatório." }),
+  email: z.string().min(1, { message: "O campo e-mail é obrigatório." }),
+  sexo: z
     .string()
     .max(1, { message: "Digite M para Masculino ou F para Feminino" })
     .min(1, { message: "O campo sexo é obrigatório." }),
-  tel_paciente: z
+  tel: z
     .string()
     .max(12, { message: "Apenas números, Ex.: 011912341234 ou 11912341234" })
     .min(1, { message: "O campo telefone é obrigatório." }),
@@ -44,6 +35,9 @@ const schema = z.object({
     .max(8, { message: "Sem traço ou ponto, Ex.: 60000000" })
     .min(1, { message: "O campo CEP é obrigatório." }),
   endereco: z.string().min(1, { message: "O campo endereço é obrigatório." }),
+  tipo_ficha_id: z
+    .string()
+    .min(1, { message: "O campo tipoFicha é obrigatório." }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -101,24 +95,29 @@ const RegisterClinicalRecord = () => {
             <div className="w-1/2">
               <span>Nome:</span>
               <Input
-                name="nome_paciente"
+                name="nome"
                 type="text"
                 placeholder="Nome completo do paciente"
                 register={register}
-                error={errors.nome_paciente?.message}
+                error={errors.nome?.message}
               />
             </div>
             <div className="w-1/2 flex flex-col">
               <span>Tipo de Ficha:</span>
               <select
-                {...register("tipoFichaId")}
+                {...register("tipo_ficha_id")}
                 className="border p-2 rounded-md border-blue-500 bg-transparent focus:border-blue-500 focus:outline-none"
                 defaultValue=""
+                onChange={(e) => console.log(e.target.value)}
               >
                 <option value="">Selecione um tipo de ficha</option>
                 {questionTypes.map((type) => (
-                  <option key={type.id} value={type.id}>
-                    {type.nome}
+                  <option
+                    key={type.id}
+                    value={type.id}
+                    onChange={() => console.log(type)}
+                  >
+                    {type.name}
                   </option>
                 ))}
               </select>
@@ -128,21 +127,21 @@ const RegisterClinicalRecord = () => {
             <div className="w-1/2">
               <span>Data de Nascimento: </span>
               <Input
-                name="dta_nasc_paciente"
+                name="dta_nasc"
                 type="text"
                 placeholder="Data de nascimento"
                 register={register}
-                error={errors.dta_nasc_paciente?.message}
+                error={errors.dta_nasc?.message}
               />
             </div>
             <div className="w-1/2">
               <span>Idade:</span>
               <Input
-                name="idade_paciente"
+                name="idade"
                 type="text"
                 placeholder="Idade do paciente:"
                 register={register}
-                error={errors.idade_paciente?.message}
+                error={errors.idade?.message}
               />
             </div>
           </div>
@@ -150,21 +149,21 @@ const RegisterClinicalRecord = () => {
             <div className="w-1/2">
               <span>Profissional Responsável:</span>
               <Input
-                name="resp_paciente"
+                name="resp"
                 type="text"
                 placeholder="Responsável pelo paciente"
                 register={register}
-                error={errors.resp_paciente?.message}
+                error={errors.resp?.message}
               />
             </div>
             <div className="w-1/2">
               <span>Email:</span>
               <Input
-                name="email_paciente"
+                name="email"
                 type="email"
                 placeholder="E-mail do paciente"
                 register={register}
-                error={errors.email_paciente?.message}
+                error={errors.email?.message}
               />
             </div>
           </div>
@@ -172,21 +171,21 @@ const RegisterClinicalRecord = () => {
             <div className="w-1/2">
               <span>Sexo:</span>
               <Input
-                name="sexo_paciente"
+                name="sexo"
                 type="text"
                 placeholder="M ou F"
                 register={register}
-                error={errors.sexo_paciente?.message}
+                error={errors.sexo?.message}
               />
             </div>
             <div className="w-1/2">
               <span>Telefone:</span>
               <Input
-                name="tel_paciente"
+                name="tel"
                 type="text"
                 placeholder="Telefone"
                 register={register}
-                error={errors.tel_paciente?.message}
+                error={errors.tel?.message}
               />
             </div>
           </div>

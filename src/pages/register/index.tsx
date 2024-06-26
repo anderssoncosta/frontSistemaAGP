@@ -31,7 +31,7 @@ const Register = () => {
   };
 
   return (
-    
+
     <div className="bg-[url('./assets/background-login.png')] bg-cover h-screen w-full flex justify-center">
       <div className=" w-full flex flex-col justify-center sm:flex sm:flex-row ">
         <div className="w-full flex justify-center items-center">

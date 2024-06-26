@@ -9,6 +9,7 @@ import Contents from "../../components/contents";
 import ModalContents from "../../components/modal";
 import { useState } from "react";
 import RegisterPatient from "../Patients/registerPatient";
+import DataTable from "../../components/dataTable";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Home = () => {
@@ -35,8 +36,8 @@ const Home = () => {
           </div>
           <div className="flex items-center justify-evenly gap-2 xl:justify-between">
             <Link
-              to="/agenda"
-              className="w-60 h-40 rounded-lg bg-white flex flex-col items-center justify-center gap-3 hover:border-2 hover:border-violet-700 xl:w-72 xl:h-52 lg:w-80 lg:h-52"
+              to="/agendar"
+              className="w-60 h-40 rounded-lg bg-secondary flex flex-col items-center justify-center gap-3 hover:border-2 hover:border-primary xl:w-72 xl:h-52 lg:w-80 lg:h-52"
             >
               <FaUserClock size={50} color="#3b82f6" />
               <div className="flex flex-col items-center">
@@ -46,7 +47,7 @@ const Home = () => {
             </Link>
             <Link
               to="/"
-              className="w-60 h-40 rounded-lg bg-white flex flex-col items-center justify-center gap-3 hover:border-2 hover:border-violet-700 xl:w-72 xl:h-52 lg:w-80 lg:h-52"
+              className="w-60 h-40 rounded-lg bg-secondary flex flex-col items-center justify-center gap-3 hover:border-2 hover:border-primary xl:w-72 xl:h-52 lg:w-80 lg:h-52"
             >
               <FaUserCheck size={50} color="#3b82f6" />
               <div className="flex flex-col items-center">
@@ -56,7 +57,7 @@ const Home = () => {
             </Link>
             <Link
               to="/pacientes"
-              className="w-60 h-40 rounded-lg bg-white flex flex-col items-center justify-center gap-3 hover:border-2 hover:border-violet-700 xl:w-72 xl:h-52 lg:w-80 lg:h-52"
+              className="w-60 h-40 rounded-lg bg-secondary flex flex-col items-center justify-center gap-3 hover:border-2 hover:border-primary xl:w-72 xl:h-52 lg:w-80 lg:h-52"
             >
               <FaUserPlus size={50} color="#3b82f6" />
               <div className="flex flex-col items-center">
@@ -66,7 +67,8 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <button onClick={handleOpenModal}>Abrir</button>
+        {/* <DataTable /> */}
+        {/* <button onClick={handleOpenModal}>Abrir</button> */}
         <ModalContents
           titleModal="Cadastro de Paciente"
           onClose={handleCloseModal}

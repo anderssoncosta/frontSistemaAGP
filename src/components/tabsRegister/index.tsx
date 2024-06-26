@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { IconBaseProps } from "react-icons";
-import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
+import { HiUserCircle } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
 
 interface Tab {
@@ -23,9 +23,7 @@ interface TabsProps {
 const TabsRegister = ({
   registerClinicalRecord,
   registerAnamnesis,
-}: // registerQuantityPhysio,
-// registerEvolution,
-TabsProps) => {
+}: TabsProps) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const tabs: Tab[] = [
@@ -39,16 +37,6 @@ TabsProps) => {
       icon: <MdDashboard size={22} />,
       content: <div>{registerAnamnesis}</div>,
     },
-    // {
-    //   label: "Quantidade Fisio",
-    //   icon: <HiAdjustments size={22} />,
-    //   content: <div>{registerQuantityPhysio}</div>,
-    // },
-    // {
-    //   label: "Evolucao",
-    //   icon: <HiClipboardList size={22} />,
-    //   content: <div>{registerEvolution}</div>,
-    // },
   ];
 
   return (

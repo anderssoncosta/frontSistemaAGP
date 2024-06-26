@@ -44,6 +44,7 @@ const Login = () => {
               <div>
                 <span className="text-violet-500">E-mail</span>
                 <Input
+                
                   name="email"
                   type="email"
                   placeholder="Digite seu e-mail"

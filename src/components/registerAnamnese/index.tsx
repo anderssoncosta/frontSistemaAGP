@@ -5,7 +5,6 @@ import { QuestionApi, getQuestions } from "../../services/question";
 const RegisterAnamnesis = () => {
   const [patients, setPatients] = useState<PatientApi[]>([]);
   const [questions, setQuestions] = useState<QuestionApi[]>([]);
-  const [regs, setRegs] = useState<number | null>(null);
 
   const fetchQuestionsResult = async () => {
     const [responsePatient, responseQuestions] = await Promise.all([
@@ -21,14 +20,14 @@ const RegisterAnamnesis = () => {
     fetchQuestionsResult();
   }, []);
 
-  const resultQuestions = questions.filter((e) => e.id === regs);
-  console.log("aqui => ", resultQuestions);
+  const resultQuestions = questions.filter((e) => e.id);
+  console.log("Retorno das perguntas => ", resultQuestions);
 
   return (
-    <div className="flex flex-col w-full h-max-[450px] bg-white gap-5 p-4 overflow-auto">
+    <div className="flex flex-col w-full h-[500px] h-max-[450px] bg-white gap-5 p-4 overflow-auto">
       {resultQuestions.map((item) =>
         item.perguntas.map((pergunta) => (
-          <span key={pergunta.id}>{pergunta.pergunta}</span>
+          <span key={pergunta.id}>{`${pergunta.pergunta}`}</span>
         ))
       )}
     </div>

@@ -3,9 +3,13 @@ import SideBar from "../sidebar";
 
 const Layout = () => {
   return (
-    <div className="w-full flex max-h-screen">
-      <SideBar />
-      <Outlet />
+    <div className="w-full flex">
+      <div>
+        <SideBar />
+      </div>
+      <div className="w-full">
+        <Outlet />
+      </div>
     </div>
   );
 };

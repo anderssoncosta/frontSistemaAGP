@@ -53,10 +53,9 @@ const Table = ({ data, columns }: TableProps) => {
   const [searchText, setSearchText] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-
   const handleSearch = (text: string) => {
     setSearchText(text);
-    setCurrentPage(1)
+    setCurrentPage(1);
   };
 
   const filteredData = data.filter((item) =>
@@ -66,6 +65,49 @@ const Table = ({ data, columns }: TableProps) => {
         value.toLowerCase().includes(searchText.toLowerCase())
     )
   );
+
+  // const customStyles = {
+  //   TableHeadRow:{
+  //     style:{
+  //       backgroundColor: "transparent",
+  //     }
+  //   },
+  //   rows: {
+  //     style: {
+  //       minHeight: "62px",
+  //       display: "flex",
+  //       flexDirection: "row",
+  //       alignItems: "center",
+  //       justifyContent: "center",
+  //     },
+  //   },
+  //   headCells: {
+  //     style: {
+  //       paddingLeft: "8px",
+  //       paddingRight: "8px",
+  //       backgroundColor: "#94c2fa",
+  //       color: "#fff",
+  //       borderRadius: "8px",
+  //       margin: "4px",
+  //       flexDirection: "row",
+  //       alignItems: "center",
+  //       justifyContent: "center",
+  //     },
+  //   },
+  //   cells: {
+  //     style: {
+  //       paddingLeft: "8px",
+  //       paddingRight: "8px",
+  //       backgroundColor: "#60a5fa",
+  //       color: "#fff",
+  //       borderRadius: "8px",
+  //       height: "40px",
+  //       margin: "4px",
+  //       display: "flex",
+  //       justifyContent: "center",
+  //     },
+  //   },
+  // };
   return (
     <div className="rounded-lg">
       <div className="flex items-center mb-4 gap-2 w-full">
@@ -86,6 +128,7 @@ const Table = ({ data, columns }: TableProps) => {
       <DataTable
         columns={columns}
         data={filteredData}
+        // customStyles={customStyles}
         pagination
         paginationPerPage={10}
         paginationTotalRows={filteredData.length}

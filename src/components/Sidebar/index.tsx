@@ -7,8 +7,9 @@ import { PiSignOutBold } from "react-icons/pi";
 
 import { Link } from "react-router-dom";
 
-// import logo from "../../assets/LOGO.png";
+import logo from "../../assets/LOGO.png";
 import { AuthContext } from "../../context/auth";
+import { cn } from "../../@/lib/utils";
 
 interface navProps {
   name: string;
@@ -42,7 +43,7 @@ const nav: navProps[] = [
       // },
       {
         submenu: "Cadastrar Ficha de Atendimento",
-        href: "/tipodeficha",
+        href: "/tipo-de-ficha",
       },
     ],
   },
@@ -53,11 +54,11 @@ const nav: navProps[] = [
     subnav: [
       {
         submenu: "Lista de agendamento",
-        href: "/agenda",
+        href: "/lista-de-agendamentos",
       },
       {
         submenu: "Agendar consulta",
-        href: "/agenda",
+        href: "/agendar",
       },
     ],
   },
@@ -99,6 +100,7 @@ const nav: navProps[] = [
 
 const SideBar = () => {
   const [isSubMenuOpen, setSubMenuOpen] = useState<number | null>(null);
+
   const sideBarRef = useRef<HTMLDivElement>(null);
 
   const { logout } = useContext(AuthContext);
@@ -125,18 +127,21 @@ const SideBar = () => {
   const handleLogout = () => {
     logout();
   };
+
   return (
     <aside
       ref={sideBarRef}
-      className="flex w-64 h-screen px-6 py-5 rounded-e-xl bg-gradient-to-t from-blue-700 to-blue-400"
+      className={cn(
+        "flex flex-col gap-3 min-h-screen max-h-screen overflow-y-auto w-fit md:pr-8 pr-3 pt-2 rounded-e-xl bg-primary pl-[50px]"
+      )}
     >
       <div className="flex justify-between flex-col w-full items-center h-full">
         <div className="flex justify-center w-full">
-          {/* <img
+          <img
             className="w-60 h-auto rounded-lg"
             src={logo}
             alt="Logo do sistema"
-          /> */}
+          />
         </div>
         <nav className="w-full flex flex-col gap-3">
           <Link to="/" className="flex mb-3 text-white gap-3">

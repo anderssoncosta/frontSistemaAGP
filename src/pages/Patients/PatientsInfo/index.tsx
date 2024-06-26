@@ -13,6 +13,8 @@ import ContentQuantityPhysio, {
   TimeEntry,
 } from "../../../components/contentQuantityPhysio";
 import { toast } from "react-toastify";
+import ModalContents from "../../../components/modal";
+import AppointmentScheduler from "../../../components/appointmentScheduler";
 
 const PatientsInfo = () => {
   const { id } = useParams();
@@ -32,6 +34,7 @@ const PatientsInfo = () => {
   }, [id]);
 
   const [time, setTime] = useState<TimeEntry[]>([]);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const handlePresencaClick = () => {
     const currentDate = new Date();
@@ -44,6 +47,14 @@ const PatientsInfo = () => {
     toast.success("Paciente Atendido");
   };
 
+  const handleOpenModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <Contents>
       <div className="w-[95%]">
@@ -51,20 +62,17 @@ const PatientsInfo = () => {
           <UserProfile />
           <HeaderTitle
             iconTitle={<FaArrowLeft size={20} color="#FFF" />}
-            title={`Paciente: ${currentPatient?.nome_paciente}`}
+            title={`Paciente: ${currentPatient?.name}`}
           />
         </div>
         {currentPatient && (
           <div className="h-36 flex justify-between items-center bg-white p-4 mt-4 gap-2 rounded-lg">
             <div>
-              <h1 className="font-bold">{currentPatient.nome_paciente}</h1>
+              <h1 className="font-bold">{currentPatient.name}</h1>
             </div>
             <div className="flex flex-col justify-between h-full">
               <h1>
-                Idade:{" "}
-                <span className="font-bold">
-                  {currentPatient.idade_paciente}
-                </span>
+                Idade: <span className="font-bold">{currentPatient.age}</span>
               </h1>
               <h1>
                 Paciente:{" "}
@@ -76,21 +84,17 @@ const PatientsInfo = () => {
               </h1>
               <h1>
                 Responsável:{" "}
-                <span className="font-bold">
-                  {currentPatient.resp_paciente}
-                </span>
+                <span className="font-bold">{currentPatient.resp}</span>
               </h1>
             </div>
             <div className="flex flex-col justify-evenly h-full">
               <h1>
                 Telefone:{" "}
-                <span className="font-bold">{currentPatient.tel_paciente}</span>
+                <span className="font-bold">{currentPatient.tel}</span>
               </h1>
               <h1>
                 E-mail:{" "}
-                <span className="font-bold">
-                  {currentPatient.email_paciente}
-                </span>
+                <span className="font-bold">{currentPatient.email}</span>
               </h1>
             </div>
             <div className="flex flex-col gap-2">
@@ -100,12 +104,22 @@ const PatientsInfo = () => {
               >
                 Presente
               </button>
-              <button className="bg-red-500 text-white px-3 rounded-lg">
-                Falta
+              <button
+                onClick={handleOpenModal}
+                className="bg-blue-700 text-white px-3 rounded-lg"
+              >
+                Agendar
               </button>
             </div>
           </div>
         )}
+        <ModalContents
+          titleModal="Agendamento"
+          onClose={handleCloseModal}
+          isOpen={modalIsOpen}
+        >
+          <AppointmentScheduler />
+        </ModalContents>
         <div className="flex flex-col gap-3 mt-10 ">
           <Tabs
             contentClinicalRecord={<ContentClinicalRecord />}

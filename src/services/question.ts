@@ -2,25 +2,25 @@ import api from "./api";
 
 export interface QuestionProps {
   id: number;
-  pergunta: string;
+  questions: string;
 }
 
-export interface TipoFicha {
+export interface PlugType {
   id: number;
-  nome: string;
+  name: string;
 }
 
 export interface QuestionApi {
   id: number;
-  nome: string;
-  tipoFichaId: number;
-  tipoFicha: TipoFicha;
-  perguntas: QuestionProps[];
+  name: string;
+  id_plug_type: number;
+  plug_type: PlugType;
+  questions: QuestionProps[];
 }
 
 const getQuestions = async (): Promise<QuestionApi[]> => {
   try {
-    const response = await api.get<QuestionApi[]>("/tipoFicha");
+    const response = await api.get<QuestionApi[]>("/tipo-ficha");
     // console.log(response.data);
     return response.data;
   } catch (error) {
@@ -32,7 +32,7 @@ const getQuestions = async (): Promise<QuestionApi[]> => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const postPatiente = async (obj: any) => {
   try {
-    const response = await api.post<QuestionApi[]>(`/tipoFicha`, obj, {
+    const response = await api.post<QuestionApi[]>(`/tipo-ficha`, obj, {
       headers: {
         "Content-Type": "application/json",
       },

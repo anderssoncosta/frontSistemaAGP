@@ -11,7 +11,7 @@ import HeaderTitle from "../../../components/headerTitle";
 import { FaArrowLeft } from "react-icons/fa";
 
 const SheetType = () => {
-  const [selectedFicha, setSelectedFicha] = useState("");
+  const [selectedPlug, setSelectedPlug] = useState("");
   const [questions, setQuestions] = useState<QuestionApi[]>([]);
   const [selectedQuestions, setSelectedQuestions] = useState<
     QuestionProps[] | undefined
@@ -26,13 +26,13 @@ const SheetType = () => {
     fetchQuestionsResult();
   }, []);
 
-  const handleFichaChange = (event: { target: { value: any } }) => {
+  const handleRecordChange = (event: { target: { value: any } }) => {
     const selectedFicha = event.target.value;
-    setSelectedFicha(selectedFicha);
+    setSelectedPlug(selectedPlug);
 
     const selectedFichaQuestions = questions.find(
-      (ficha) => ficha.nome === selectedFicha
-    )?.perguntas;
+      (card) => card.name === selectedFicha
+    )?.questions;
 
     setSelectedQuestions(selectedFichaQuestions);
   };
@@ -51,20 +51,20 @@ const SheetType = () => {
       </div>
       <div className="w-[95%]">
         <label>
-          <select value={selectedFicha} onChange={handleFichaChange}>
+          <select value={selectedPlug} onChange={handleRecordChange}>
             <option value="">Selecione...</option>
-            {questions.map((ficha) => (
-              <option key={ficha.id} value={ficha.nome}>
-                {ficha.nome}
+            {questions.map((card) => (
+              <option key={card.id} value={card.name}>
+                {card.name}
               </option>
             ))}
           </select>
         </label>
 
-        {selectedQuestions?.map((pergunta, index) => (
+        {selectedQuestions?.map((question, index) => (
           <div key={index}>
-            <span>{pergunta.pergunta}</span>
-            <input type="text" placeholder={`${pergunta.pergunta}`} />
+            <span>{question.questions}</span>
+            <input type="text" placeholder={`${question.questions}`} />
           </div>
         ))}
       </div>
